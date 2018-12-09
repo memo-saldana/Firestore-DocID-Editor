@@ -6,12 +6,12 @@ admin.initializeApp({
   databaseURL: "myFiestoreDB" //CHANGE THIS TO YOUR DB URL
 });
 
-const db = admin.firestore();
+const dataBase = admin.firestore();
 
 
 function editData(){
 
-	db.collection("myCollection").doc("myDocument").collection("mySubcollection")
+	dataBase.collection("myCollection").doc("myDocument").collection("mySubcollection")
 		.get()
 	    .then(function(querySnapshot) {
 	        querySnapshot.forEach(function(doc) {
@@ -28,11 +28,11 @@ function editData(){
 	            console.log(oldData);
 				
 				// Create new document with new ID
-				db.collection("myCollection").doc("myDocment").collection("mySubcollection").doc(newTitle).set(oldData).then(()=> {
+				dataBase.collection("myCollection").doc("myDocment").collection("mySubcollection").doc(newTitle).set(oldData).then(()=> {
 	            	console.log("Created ", newTitle)
 					
 					// Delete old document with old document ID
-					db.collection("myCollection").doc("myDocment").collection("mySubcollection").doc(title).delete().then(()=> {
+					dataBase.collection("myCollection").doc("myDocment").collection("mySubcollection").doc(title).delete().then(()=> {
 	            		console.log("Deleted ", title);
 	            	})
 	            	.catch( function(error) {
